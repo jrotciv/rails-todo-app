@@ -1,13 +1,15 @@
 class ListsController < ApplicationController
+  before_action :require_login
+  before_action :set_list, only: [ :show, :destroy ]
   def index
-    @lists = List.all.order(created_at: :desc)
+    @lists = current_user.lists.order(created_at: :desc)
   end
   def new
     @list = List.new
   end
 
   def create
-    @list = List.new(list_params)
+    @list = current_user.lists.build(list_params)
     if @list.save
       redirect_to @list
     else
@@ -16,12 +18,10 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = List.find(params[:id])
     @items = @list.items.order(:created_at)
   end
 
   def destroy
-    @list = List.find(params[:id])
     @list.destroy
     redirect_to lists_path
   end
@@ -29,5 +29,13 @@ class ListsController < ApplicationController
   private
   def list_params
     params.require(:list).permit(:name)
+  end
+
+  def set_list
+    @list = current_user.lists.find_by(id: params[:id])
+
+    if @list.nil?
+      redirect_to root_path
+    end
   end
 end
