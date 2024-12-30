@@ -8,3 +8,21 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+.check-status:checked {
+  background-color: #28a745; 
+}
+
+.check-status:checked:focus {
+  border-color: #28a745;
+}
+
+.check-status {
+  width: 1.25rem; 
+  height: 1.25rem;
+  border-radius: 0.25rem;
+  border: 2px solid #28a745; 
+}
+
+.check-status:focus {
+  border-color: #28a745;
+}
