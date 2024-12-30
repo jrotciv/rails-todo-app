@@ -2,14 +2,37 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-8">
       <div class="card mb-4">
         <div class="card-body">
           <p class="card-text text-muted">Criada em: <%= @list.created_at.strftime("%B %d, %Y") %></p>
           
-          <h3 class="mt-4">Tarefas:</h3>
-          <p class="text-center">Nenhuma tarefa foi adicionada ainda.</p>
+          <div class="mt-4">
+            <%= form_with model: [@list, @list.items.build], local: true do |form| %>
+              <div class="mb-3">
+                <%= form.label :task, "Nova tarefa:", class: "form-label" %>
+                <%= form.text_field :task, class: "form-control" %>
+              </div>
+              <%= form.submit "Adicionar", class: "btn btn-success" %>
+            <% end %>
+          </div>
 
+          <h3 class="mt-4">Tarefas:</h3>
+          <% if @list.items.exists? %>
+            <ul class="list-group mb-4">
+              <% @list.items.reject(&:new_record?).each do |item| %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <%= item.task %>
+                  <span class="badge <%= item.completed ? 'bg-success' : 'bg-secondary' %>">
+                    <%= item.completed ? 'Feita' : 'Pendente' %>
+                  </span>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="text-center">Nenhuma tarefa foi adicionada</p>
+          <% end %>
+          
           <div class="mt-4 text-center">
             <%= link_to 'Voltar', '#', class: 'btn btn-secondary' %>
             <%= link_to 'Editar', '#', class: 'btn btn-primary ml-2' %>
