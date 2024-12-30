@@ -1,4 +1,7 @@
 class ListsController < ApplicationController
+  def index
+    @lists = List.all.order(created_at: :desc)
+  end
   def new
     @list = List.new
   end
