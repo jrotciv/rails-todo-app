@@ -1,5 +1,10 @@
 <h1 class="text-center my-4">ToDo Lists</h1>
 <div class="container">
+  <div class="mb-4">
+    <%= link_to new_list_path, class: 'btn btn-success btn-sm' do %>
+      <i class="bi bi-plus-circle"> Nova lista</i>
+    <% end %>
+  </div>
   <div class="row">
     <% @lists.each do |list| %>
       <div class="col-md-4 mb-3">
