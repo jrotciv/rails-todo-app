@@ -1,0 +1,18 @@
+<h1 class="text-center my-4">Criar nova lista de tarefas</h1>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= form_with model: @list, class: 'needs-validation' do |form| %>
+        <div class="mb-3">
+          <%= form.label :name, class: 'form-label' %>
+          <%= form.text_field :name, class: 'form-control', placeholder: 'Nome da lista' %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.submit "Criar Lista", class: 'btn btn-primary w-100' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
