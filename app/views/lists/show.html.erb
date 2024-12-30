@@ -1,0 +1,46 @@
+<h1 class="text-center my-4"><%= @list.name %></h1>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <p class="card-text text-muted">Criada em: <%= @list.created_at.strftime("%B %d, %Y") %></p>
+
+          <div class="mt-4">
+            <%= form_with model: [@list, @list.items.build], local: true do |form| %>
+              <div class="mb-3">
+                <%= form.label :task, "Nova tarefa:", class: "form-label" %>
+                <%= form.text_field :task, class: "form-control" %>
+              </div>
+              <%= form.submit "Adicionar", class: "btn btn-success" %>
+            <% end %>
+          </div>
+
+          <h3 class="mt-4">Tarefas:</h3>
+          <% if @list.items.exists? %>
+            <ul class="list-group mb-4">
+              <% @items.each do |item| %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <%= item.task %>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <%= form_with model: [@list, item], local: true, method: :patch do |form| %>
+                      <%= form.check_box :completed, checked: item.completed, class: "form-check-input me-3 check-status", onchange: "this.form.submit();" %>
+                    <% end %>
+                    <%= link_to [@list, item], method: :delete, class: "btn btn-danger btn-sm", data: { turbo_method: :delete } do %>
+                      <i class="bi bi-trash"></i>
+                    <% end %>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="text-center">Nenhuma tarefa foi adicionada</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
