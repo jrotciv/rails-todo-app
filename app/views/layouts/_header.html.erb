@@ -7,7 +7,7 @@
 
     <div class="collapse navbar-collapse" id="expanded-menu">
       <ul class="navbar-nav">
-        <%if !signed_in? %>
+        <%if !logged_in? %>
           <li class="nav-item active">
           <%= link_to 'Nova Conta', new_user_path, class: "nav-link text-light" %>
         </li>
@@ -15,7 +15,7 @@
       </ul>
 
       <ul class="navbar-nav ms-auto">
-        <%if !signed_in? %>
+        <%if !logged_in? %>
           <li class="nav-item">
             <%= link_to 'Entrar', login_path, class: "nav-link" %>
           </li>

@@ -1,12 +1,12 @@
 class SessionsController < ApplicationController
   def new
-    redirect_to root_path if signed_in?
+    redirect_to root_path if logged_in?
   end
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      sign_in(user)
+      login(user)
       redirect_to root_path
     else
       render "new"
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    sign_out
+    log_out
     redirect_to login_path
   end
 end
