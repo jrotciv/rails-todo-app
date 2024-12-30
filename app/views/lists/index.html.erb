@@ -2,7 +2,7 @@
 <div class="container">
   <div class="mb-4">
     <%= link_to new_list_path, class: 'btn btn-success btn-sm' do %>
-      <i class="bi bi-plus-circle"> Nova lista</i>
+      <i class="bi bi-plus-circle"></i> Nova lista
     <% end %>
   </div>
   <div class="row">
@@ -10,9 +10,16 @@
       <div class="col-md-4 mb-3">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title"><%= link_to list.name, list_path(list), class: "text-decoration-none" %></h5>
+            <h5 class="card-title">
+              <%= link_to list.name, list_path(list), class: "text-decoration-none" %>
+            </h5>
             <p class="card-text text-muted">Criada em: <%= list.created_at.strftime("%B %d, %Y") %></p>
-            <%= link_to 'Ver lista', list_path(list), class: 'btn btn-primary btn-sm' %>
+            <div class="d-flex justify-content-between">
+              <%= link_to 'Ver lista', list_path(list), class: 'btn btn-primary btn-sm' %>
+              <%= button_to list_path(list), method: :delete, class: "btn btn-danger btn-sm" do %>
+                <i class="bi bi-trash"></i>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
