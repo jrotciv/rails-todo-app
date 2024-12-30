@@ -1,24 +1,65 @@
-# README
+# Rails ToDo App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este é um aplicativo simples de gerenciamento de tarefas, desenvolvido com Ruby on Rails
 
-Things you may want to cover:
+## Tecnologias utilizadas e suas versões
 
-* Ruby version
+- **Ruby**: 3.2.2
+- **Rails**: 8.0.1
 
-* System dependencies
+## Como rodar o projeto
 
-* Configuration
+### 1. Clonar o repositório
 
-* Database creation
+Clone o repositório para sua máquina local:
 
-* Database initialization
+```bash
+git clone https://github.com/jrotciv/rails-todo-app.git
+```
+ou
+```bash
+git clone git@github.com:jrotciv/rails-todo-app.git
+```
+### 2. Instalar dependências
 
-* How to run the test suite
+Entre na pasta e instale as dependências necessárias
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+cd rails-todo-app
+bundle install
+```
+### 3. Iniciar o compose
 
-* Deployment instructions
+Inicie o container com o docker compose para o banco de dados e o painel de visualização
+```bash
+docker compose up
+```
+ou
 
-* ...
+```bash
+docker compose up -d
+```
+
+### 4. Crie o banco de dados
+
+Crie e rode as migrations para o banco de dados com o comando abaixo (o banco será criado automaticamente)
+
+```bash
+rails db:migrate
+```
+### 5. Inicie a aplicação
+
+```bash
+rails s
+```
+
+Aplicação rodando em: ```http://localhost:3000```  
+  
+Adminer (painel de administração do banco): 
+- Rodando: ```http://localhost:8080```
+- Para entrar no painel:
+  - Sistema: ```PostgreSQL```
+  - Servidor: ```database```
+  - Usuário: ```root```
+  - Senha: ```root```
+
