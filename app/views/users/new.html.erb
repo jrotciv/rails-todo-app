@@ -1,26 +1,43 @@
-<div class="row">
-  <div class="col-xs-12">
-    <h1>Cadastre-se</h1>
-  </div>
-  <div class="col-md-6 col-md-offset-3 col-xs-12">
-    <%= form_for @user do |f| %>
-      <div class="form-group">
-        <%= f.label :name %>
-        <%= f.text_field :name, class: 'form-control' %>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="row w-100">
+    <div class="col-md-4 offset-md-4 col-12">
+      <div class="text-center mb-4">
+        <h1>Cadastre-se</h1>
       </div>
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, class: 'form-control' %>
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <%= form_for @user do |f| %>
+
+            <div class="form-group mb-3">
+              <%= f.label :name, class: 'form-label' %>
+              <%= f.text_field :name, class: 'form-control form-control-lg' %>
+            </div>
+
+            <div class="form-group mb-3">
+              <%= f.label :email, class: 'form-label' %>
+              <%= f.email_field :email, class: 'form-control form-control-lg' %>
+            </div>
+
+            <div class="form-group mb-3">
+              <%= f.label :password, class: 'form-label' %>
+              <%= f.password_field :password, class: 'form-control form-control-lg' %>
+            </div>
+
+            <div class="form-group mb-3">
+              <%= f.label :password_confirmation, class: 'form-label' %>
+              <%= f.password_field :password_confirmation, class: 'form-control form-control-lg' %>
+            </div>
+
+            <%= f.submit 'Cadastrar', class: 'btn btn-primary btn-lg w-100' %>
+
+          <% end %>
+        </div>
       </div>
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
+
+      <div class="text-center mt-3">
+        <p class="text-muted">Já tem uma conta? <%= link_to 'Entre aqui', login_path %></p>
       </div>
-      <div class="form-group">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
-      </div>
-      <%= f.submit 'Cadastrar', class: 'btn btn-primary' %>
-    <% end %>
+    </div>
   </div>
 </div>
