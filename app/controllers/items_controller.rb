@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def destroy 
+  def destroy
     @list = List.find(params[:list_id])
     @item = @list.items.find(params[:id])
     @item.destroy
