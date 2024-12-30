@@ -18,9 +18,9 @@
           </div>
 
           <h3 class="mt-4">Tarefas:</h3>
-          <% if @items.exists? %>
+          <% if @list.items.exists? %>
             <ul class="list-group mb-4">
-              <% @items.reject(&:new_record?).each do |item| %>
+              <% @items.each do |item| %>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                   <div>
                     <%= item.task %>
@@ -28,6 +28,9 @@
                   <div class="d-flex align-items-center">
                     <%= form_with model: [@list, item], local: true, method: :patch do |form| %>
                       <%= form.check_box :completed, checked: item.completed, class: "form-check-input me-3 check-status", onchange: "this.form.submit();" %>
+                    <% end %>
+                    <%= link_to [@list, item], method: :delete, class: "btn btn-danger btn-sm", data: { turbo_method: :delete } do %>
+                      <i class="bi bi-trash"></i>
                     <% end %>
                   </div>
                 </li>
