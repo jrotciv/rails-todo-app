@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#expanded-menu" aria-controls="expanded-menu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="expanded-menu">
+      <ul class="navbar-nav">
+        <%if !logged_in? %>
+          <li class="nav-item active">
+          <%= link_to 'Nova Conta', new_user_path, class: "nav-link text-light" %>
+        </li>
+        <% end %>
+      </ul>
+
+      <ul class="navbar-nav ms-auto">
+        <%if !logged_in? %>
+          <li class="nav-item">
+            <%= link_to 'Entrar', login_path, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Sair', logout_path, data: { turbo_method: :delete }, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
